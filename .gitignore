@@ -1,0 +1,22 @@
+# 真实登录凭据，绝不提交
+config.py
+
+# 缓存 / 临时音频
+__pycache__/
+*.pyc
+
+# 抓取/生成的数据文件（含个人学习数据：课程ID、教师姓名、签名地址、转写文本），不入库。
+# 结构样例见 out/videos_array.example.json；真实文件由脚本在本地生成。
+out/*
+!out/videos_array.example.json
+
+# 含真实 ID 的本地临时脚本与页面样本
+1.py
+samples/courselist.html
+samples/page_chapter.html
+
+# 运行日志
+*.log
+
+# 本地会话工具
+.workbuddy/

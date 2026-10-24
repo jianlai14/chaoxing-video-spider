@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="/ananas/video-js-7.2.2/video-js.css?v=2024-0408-1409" rel="stylesheet" type="text/css">
+<link href="/ananas/videojs-ext/videojs-ans.css?v=2025-0520-1847" rel="stylesheet" type="text/css">
+<link href="/ananas/videojs-ext/videojs-test-ans.css?v=2026-0721-1703" rel="stylesheet" type="text/css">
+<link href="/ananas/videojs-ext/resolution-switcher/videojs-resolution-switcher.css" rel="stylesheet">
+    <link href="/ananas/videojs-ext/zsCloud.css?v=2026-0707-2031" rel="stylesheet">
+<link href="/ananas/modules/video/index.css?v=2026-0825-1707" rel="stylesheet">
+<link href="/ananas/modules/video/ion.rangeSlider.min.css?v=2023-0425-1353" rel="stylesheet">
+<style type="text/css">
+    .video-js .vjs-fullscreen-control{margin-right:0}
+    .vjs-icon-fullscreen-enter:before,.video-js .vjs-fullscreen-control .vjs-icon-placeholder:before{font-size:24px}
+    .video-js .vjs-time-tooltip,.video-js .vjs-mouse-display .vjs-time-tooltip,.video-js .vjs-tip{max-width:1000px!important}
+    .vjs-icon-fullscreen-enter:before,.video-js .vjs-fullscreen-control .vjs-icon-placeholder:before{content:"";width:40px;height:40px;background:url(/ananas/modules/video/fullBtn.png?v=1) no-repeat center center;background-size:20px 20px;text-align:center;display:block;top:0;left:3px}
+    .vjs-icon-fullscreen-exit:before,.video-js.vjs-fullscreen .vjs-fullscreen-control .vjs-icon-placeholder:before{content:"";width:40px;height:40px;background:url(/ananas/modules/video/closeFull.png?v=1) no-repeat center center;background-size:20px 20px;text-align:center;display:block;top:0;left:3px}
+</style>
+<script type="text/javascript" src="/ananas/static/js/domain.js?v=2022-0214-1506"></script>
+<script type="text/javascript" src="/ananas/swfobject/flashchecker.js?v=20141027"></script>
+<script type="text/javascript" src="/ananas/swfobject/fileloader.js?v=20141027"></script>
+    <script type="text/javascript" src="/ananas/ext/import-all-classes.js?v=2026-0510-1400"></script>
+<script type="text/javascript" src="/ananas/ext/ed_complete.js?v=20231103"></script>
+<script type="text/javascript" src="/ananas/ueditor/third-party/apputils/jquery.min.js?v=2021-0325"></script>
+<script type="text/javascript" src="/ananas/jquery.nicescroll-3.7.6/jquery.nicescroll.min.js?v=2023-0328-1640"></script>
+<script src="/ananas/modules/video/aplus_queue.js?v=2025-0416-1714" type="text/javascript"></script>
+    <script src="/ananas/static/js/echarts.min.js?v=2023-1013-0536" type="text/javascript"></script>
+    <script src="/ananas/modules/video/watermark.js?v=2024-0222-1155" type="text/javascript"></script>
+<!--<script src="marker/video.js?v=1"></script>-->
+
+<!--videojs-->
+<script src="/ananas/video-js-7.2.2/video.min.js?v=2024-0228-1849" type="text/javascript"></script>
+<script src="/ananas/modules/video/videojs_lang.js?v=2026-0828-2144" type="text/javascript"></script>
+<!--<script type="text/javascript" src="/ananas/video-js-7.2.2/lang/zh-CN.js?v=20180910"></script>-->
+    <script src="/ananas/modules/video/index.js?v=2026-1012-05" type="text/javascript"></script>
+    <script src="/ananas/ext/import-serverHost.js?v=2026-0209-1400" type="text/javascript"></script>
+    <script src="/ananas/videojs-ext/videojs-ext.min.js?v=2026-1012-06" type="text/javascript"></script>
+    <script src="/ananas/ueditor/lang/common-lang.js?v=2026-0707-2027" type="text/javascript"></script>
+<script src="marker/videojs-markers.js?v=2024-0315-1046" type="text/javascript"></script>
+<script type="text/javascript" src="/ananas/videojs-ext/js/jqcloud-1.0.4.js?v=2021-1220-1200"></script>
+<script type="text/javascript" src="/ananas/videojs-ext/drag_div.js"></script>
+<script src="/ananas/modules/video/form.utils.js" type="text/javascript"></script>
+
+
+<style>
+
+
+</style>
+</head>
+<body idpopup="bodyPopupId">
+<div id="tipDiv" style="display: none">
+    <div class="toolTipBox1" style="display: none"><i class="loadicon"><img width="100%" height="100%" src="/ananas/videoeditor/images/tips_pop.png"/></i>è¯¥è§é¢æå¸å·²è®¾ç½®éå¶ï¼æªå®æä»»å¡ç¹åæ æ³æå¨æå®ä½è¿åº¦ï¼å®æä»»å¡ç¹åå³å¯æå¨å¤ä¹ ã</div>
+</div>
+
+<div class="main clearfix" >
+    <div class="prev_video_left">
+        <div id="loading"></div>
+        <div id="note">
+            <div class="line1">
+                <div class="line2"></div>
+            </div>
+            <p class="tipStyle">è§é¢è½¬ç å¤±è´¥ï¼è¯·ä½¿ç¨å¶ä»è½¯ä»¶å¦å­åéæ°ä¸ä¼ ã9005ã</p>
+        </div>
+        <div id="note1-wrap">
+            <div class="line1">
+                <div class="line3" id="hl"></div>
+            </div>
+            <p class="tipStyle making">æ­£å¨ä¸ºæ¨å è½½æä»¶... </p>
+        </div>
+        <div class="fullScreenContainer">
+            <div class="rage_list" id="rage_list" style="right:0; display:none;"><!-- é«åº¦èªå® -->
+                <h3><span class="dmListTitle">å¼¹å¹åè¡¨</span><a class="dele icons" href="javascript:;" id="delete"></a></h3>
+                <div class="listHeader">
+                    <span class="h_time">æ¶é´</span>
+                    <span class="h_content">å¼¹å¹åå®¹</span>
+                    <span class="h_send_name" style="display: none">åéäºº</span>
+                    <span class="h_send_time">åéæ¶é´</span>
+                </div>
+                <div id="boxscroll" style="height:380px;">
+                    <ul id="danmulist">
+                    </ul>
+                </div>
+            </div>
+            <div id="reader" style="height: 469px;"></div>
+            <div class="danmuChannel" id="danmuChannel">
+                <div class="channel" id="channel_0"></div>
+                <div class="channel" id="channel_1"></div>
+                <div class="channel" id="channel_2"></div>
+                <div class="channel" id="channel_3"></div>
+            </div>
+        </div>
+        <div class="sp_function">
+            <div class="danmuDiv">
+                <div class="sp_tanmu fl sp_tanmu_blue catalog_tishi80">
+                    <div class="bntHoverPos"><span class="bntHoverEditor">å³é­å¼¹å¹</span><i class="bntHoverArrow"></i></div>
+                </div>
+                <div class="dm-settings fl">
+                    <i></i>
+                    <div class="settings-pop">
+                        <div class="settings-container">
+                            <div class="set-title">
+                                <span>å¼¹å¹è®¾ç½®</span>
+                                <button>éç½®</button>
+                            </div>
+                            <div class="set-content">
+                                <div class="range-container">
+                                    <p class="setFontSize">å­å·</p>
+                                    <input class="single-slider"/>
+                                    <div class="rangeVal" id="rangeVal1">æ å</div>
+                                </div>
+                                <div class="range-container">
+                                    <p class="setBgPercent">ä¸éæåº¦</p>
+                                    <input class="slider2"/>
+                                    <div class="rangeVal" id="rangeVal2">80%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="triangle-container">
+                            <div class="triangle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sp_barrage fl catalog_tishi80"><div class="bntHoverPos"><span class="bntHoverEditor">å¼¹å¹åè¡¨</span><i class="bntHoverArrow"></i></div></div>
+                <div class="sp_video_form fl">
+                    <input autocomplete="off" class="sp_video_input" id="barragetext" name="text" type="text" value="">
+                    <div class="sp_expr fl">
+                        <div class="sp_expr_con">
+                            <ul class="sp_expr_list">
+                                <li class="sp_expr_ico sp_expr_zt" value="@èµå@">èµå</li>
+                                <li class="sp_expr_ico sp_expr_bzt" value="@ä¸èµå@">ä¸èµå</li>
+                                <li class="sp_expr_ico sp_expr_gd" value="@æå¨@">æå¨</li>
+                                <li class="sp_expr_ico sp_expr_yh" value="@å¬ä¸æ@">å¬ä¸æ</li>
+                                <li class="sp_expr_ico sp_expr_xh" value="@è®²å¾å¥½@">è®²å¾å¥½</li>
+                                <li class="sp_expr_ico sp_expr_gz" value="@é¼æ@">é¼æ</li>
+                                <li class="sp_expr_ico sp_expr_yq" value="@æè¶£@">æè¶£</li>
+                                <li class="sp_expr_ico sp_expr_hn" value="@å¥½é¾@">å¥½é¾</li>
+                            </ul>
+                            <i class="sp_expr_arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                <a class="ed_btn ed_btn_60 fs14 fl sp_video_bnt" href="javascript:;" id="sendbarrage">åé</a>
+            </div>
+            <!--<div class="sp_agree fl catalog_tishi60"><div class="bntHoverPos"><span class="bntHoverEditor">èµå</span><i class="bntHoverArrow"></i></div></div>-->
+            <div aria-hidden="true" class="writeNote_vid fr" tabindex="-1">
+                <span class="writeNote_vid_edit">åç¬è®°</span>
+                <div class="writeNote_vid_con">
+                    <div class="writeNote_vid_box">
+                        <div class="writeNote_vid_text">å¯è¾¹çè¾¹è®°ï¼ç¬è®°ä¼æ è®°è§é¢æ¶é´ç¹</div>
+                        <div class="writeNote_vid_bnt"><a aria-hidden="true" class="writeNote_vid_blue" href="javascript:;" tabindex="-1">ç¥éäº</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="zsCloud old" style="display: none">
+        <div class="zsCloud_head">
+            <h2 class="zsCloud_h2">ç¥è¯ç¹</h2>
+            <div class="zsCloud_down" style="display: none">æ¶èµ·</div>
+        </div>
+        <div class="zsCloud_label">
+            <ul class="zsCloud_ul"></ul>
+        </div>
+        <div class="zsCloud_body" style="display: none">
+            <h3 class="zsCloud_h3">è¯äºå¾
+                <span class="zsCloud_ai_tips">åå®¹ç±AIçæï¼ä»ä¾åè</span>
+            </h3>
+            <div class="zsCloud_con" id="word_cloud"></div>
+        </div>
+    </div>
+        <div class="prev_detail_cards" style="display: none">
+            <div class="card_tabs_box">
+                <ul class="card_tabs_list">
+                    <li class="videoSummaryBtn" onclick="setTab(this)">è§é¢æè¦</li>
+                    <li class="knowledgeTabBtn" onclick="setTab(this)">ç¥è¯ç¹</li>
+                    <li class="videoMindmap" onclick="setTab(this)">æç»´å¯¼å¾</li>
+                </ul>
+                <span class="ai-promt-info" style="display: none;position: absolute;">åå®¹ç±AIçæï¼ä»ä¾åè</span>
+                <div class="pack-btn">
+                    <span>å±å¼</span><i></i>
+                </div>
+            </div>
+            <div class="card_all_content_box">
+                <div class="item_content_box videoSumBox" style="display: none">
+                    <div class="top-btn">
+                        <div class="edit_btn" onclick="showVideoSummary()">
+                            <i></i>ç¼è¾
+                        </div>
+                        <div class="sum_normal_btn add-btn" onclick="addNoteText()">
+                            <i></i>æ·»å å°ç¬è®°
+                        </div>
+                    </div>
+                    <div class="video_summary">
+                        <span class="copy-btn" onclick="copyContent()"><i></i></span>
+                        <p class="summary-text"></p>
+                    </div>
+                    <div class="loading-box">
+                        <span class="loading-img"></span><span>è§£æä¸­â¦</span>
+                    </div>
+                    <div class="reload-box">
+                        <img alt="" src="/ananas/css/icon-warn.png">
+                        <p>è§£æå¤±è´¥</p>
+                        <div class="reload-btn">ç«å³éè¯</div>
+                    </div>
+                </div>
+                <div class="item_content_box zsCloudBox" style="display: none;">
+                    <div class="zsCloud new" style="display: none">
+                        <div class="zsCloud_label">
+                            <ul class="zsCloud_ul"></ul>
+                        </div>
+                        <div class="zsCloud_body" style="display: none">
+                            <div class="zsCloud_con" id="word_cloud_new">
+                                <div class="min_map_empty">
+                                    <img alt="" src="/ananas/css/empty.png">
+                                    <p>ææ åå®¹</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item_content_box mindmapBox" style="display: none;">
+                    <div class="mind_map_box">
+                        <div class="mind_normal_btn full_screen" onclick="fullAiConDiv()">
+                            <i></i>å¨å±
+                        </div>
+                        <div class="min_map_iframe">
+                            <iframe frameborder="0" height="258" id="mindmap" src="" width="100%"></iframe>
+                        </div>
+<!--                        <div class="min_map_empty">-->
+<!--                            <img alt="" src="/ananas/css/empty.png">-->
+<!--                            <p>ææ åå®¹</p>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="prev_video_right">
+        <div class="top_title">
+            <h5>åæ®µæ»ç»<span class="ai-promt-info">åå®¹ç±AIçæï¼ä»ä¾åè</span></h5>
+            <span class="close-btn" onclick="hideRightPrev()"></span>
+        </div>
+        <div class="loading-box" style="display: none;">
+            <span class="loading-img"></span><span>è§£æä¸­â¦</span>
+        </div>
+        <div class="reload-box" style="display: none;">
+            <img alt="" src="/ananas/css/icon-warn.png">
+            <p>è§£æå¤±è´¥</p>
+            <div class="reload-btn">ç«å³éè¯</div>
+        </div>
+        <div class="sum_btns_box">
+            <div class="sum_left-btn">
+                <div class="sum_normal_btn copy-btn" onclick="copySegmentSum()">
+                    <i></i>å¤å¶
+                </div>
+                <div class="sum_normal_btn edit-btn" onclick="showSegmentSummary()">
+                    <i></i>ç¼è¾
+                </div>
+                <div class="sum_normal_btn add-btn stu-addnote-btn" onclick="allAddNote()">
+                    <i></i>æ·»å å°ç¬è®°
+                </div>
+                <div class="sum_normal_btn add-btn stu-addnote-btn" onclick="someAddNote()">
+                    <i></i>æåæ è®°åå®¹
+                </div>
+            </div>
+            <div class="sum_pack-btn active">
+                <span>æå </span>
+                <i></i>
+            </div>
+        </div>
+        <div class="sum_list_box"></div>
+    </div>
+
+    <div class="prev_video_right_New" style="display: none">
+        <div class="top_title">
+            <div class="ltip" style="margin-right: 8px;">
+                <p class="ltip__content">å°æå±æ¾å° <span id="subTitleNum">0</span> ä¸ªä¸è¯¥ç¥è¯ç¹ç¸å³ççæ®µãæ¨å¯ç¹å»æ­æ¾å¹¶éæ©å¯¹åºçæ®µï¼ç³»ç»å°èªå¨ä¸ºæ¨è·³è½¬è³è¯¥çæ®µå¯¹åºä½ç½®ã</p>
+                <span class="ltip__icon"></span>
+            </div>
+
+            <span class="close-btn" onclick="hideRightPrev()"></span>
+        </div>
+
+        <div class="sum_list_box"></div>
+    </div>
+
+    <!--å­å¹ start-->
+    <div class="qSubtit" style="display: none">
+        <div class="qSubtit_box">
+            <div class="qSubtit_tips">ä»å±ç¤ºåç¥è¯ç¹ç¸å³çå­å¹çæ®µ</div>
+            <div class="qSubtit_list">
+            </div>
+        </div>
+    </div>
+    <!--å­å¹ end-->
+</div>
+<script type="text/javascript">
+    var videoCurrentLanguage = typeof currentLanguage == "undefined" ? "zh-cn" : currentLanguage;
+    videoCurrentLanguage = videoCurrentLanguage == "zh_TW" ? "zh-tw" : (videoCurrentLanguage == "en_US" ? "en" : videoCurrentLanguage);
+    var videoI18nTextMap = window.videoPageI18nTextMap || {};
+    var videoI18nText = videoI18nTextMap[videoCurrentLanguage] || videoI18nTextMap["zh-cn"] || {};
+
+    function setNodeText(selector, text) {
+        $(selector).text(text);
+    }
+
+    function setInlineText(selector, text) {
+        $(selector).each(function () {
+            var textNode = null;
+            $(this).contents().each(function () {
+                if (this.nodeType == 3 && $.trim(this.nodeValue) != "") {
+                    textNode = this;
+                    return false;
+                }
+            });
+            if (textNode) {
+                textNode.nodeValue = text;
+            } else {
+                $(this).append(text);
+            }
+        });
+    }
+
+    function setFirstText(selector, text) {
+        $(selector).each(function () {
+            var textNode = null;
+            $(this).contents().each(function () {
+                if (this.nodeType == 3) {
+                    textNode = this;
+                    return false;
+                }
+            });
+            if (textNode) {
+                textNode.nodeValue = text;
+            } else {
+                $(this).prepend(text);
+            }
+        });
+    }
+
+    function applyVideoI18nText() {
+        $("#tipDiv .toolTipBox1").html('<i class="loadicon"><img width="100%" height="100%" src="/ananas/videoeditor/images/tips_pop.png"/></i>' + videoI18nText.limitTip);
+        $("#note .tipStyle").text(videoI18nText.transcodeFailed);
+        $("#note1-wrap .tipStyle").text(videoI18nText.loadingFile);
+        setNodeText(".dmListTitle", videoI18nText.barrageList);
+        setNodeText(".rage_list .listHeader .h_time", videoI18nText.time);
+        setNodeText(".rage_list .listHeader .h_content", videoI18nText.barrageContent);
+        setNodeText(".rage_list .listHeader .h_send_name", videoI18nText.sender);
+        setNodeText(".rage_list .listHeader .h_send_time", videoI18nText.sendTime);
+        setNodeText(".sp_tanmu.sp_tanmu_blue .bntHoverEditor", videoI18nText.closeBarrage);
+        setNodeText(".sp_barrage .bntHoverEditor", videoI18nText.barrageList);
+        setNodeText(".set-title>span", videoI18nText.barrageSettings);
+        setNodeText(".set-title>button", videoI18nText.reset);
+        setNodeText(".set-content .setFontSize", videoI18nText.fontSize);
+        setNodeText(".set-content #rangeVal1", videoI18nText.normal);
+        setNodeText(".set-content .setBgPercent", videoI18nText.opacity);
+        setNodeText(".sp_expr_list .sp_expr_zt", videoI18nText.agree);
+        setNodeText(".sp_expr_list .sp_expr_bzt", videoI18nText.disagree);
+        setNodeText(".sp_expr_list .sp_expr_gd", videoI18nText.moved);
+        setNodeText(".sp_expr_list .sp_expr_yh", videoI18nText.dontUnderstand);
+        setNodeText(".sp_expr_list .sp_expr_xh", videoI18nText.wellExplained);
+        setNodeText(".sp_expr_list .sp_expr_gz", videoI18nText.applause);
+        setNodeText(".sp_expr_list .sp_expr_yq", videoI18nText.interesting);
+        setNodeText(".sp_expr_list .sp_expr_hn", videoI18nText.difficult);
+        setNodeText("#sendbarrage", videoI18nText.send);
+        setNodeText(".writeNote_vid_edit", videoI18nText.writeNote);
+        setNodeText(".writeNote_vid_text", videoI18nText.writeNoteTip);
+        setNodeText(".writeNote_vid_blue", videoI18nText.gotIt);
+        setNodeText(".zsCloud_head .zsCloud_h2", videoI18nText.knowledgePoint);
+        setNodeText(".zsCloud_head .zsCloud_down", videoI18nText.fold);
+        setFirstText(".zsCloud_body .zsCloud_h3", videoI18nText.wordCloud);
+        setNodeText(".zsCloud_ai_tips,.ai-promt-info", videoI18nText.aiGeneratedTips);
+        setNodeText(".videoSummaryBtn", videoI18nText.videoSummary);
+        setNodeText(".knowledgeTabBtn", videoI18nText.knowledgePoint);
+        setNodeText(".videoMindmap", videoI18nText.mindMap);
+        setNodeText(".pack-btn span", videoI18nText.unfold);
+        setInlineText(".top-btn .edit_btn,.sum_left-btn .edit-btn", videoI18nText.edit);
+        setInlineText(".top-btn .add-btn,.sum_left-btn .add-btn.stu-addnote-btn:first", videoI18nText.addToNote);
+        setNodeText(".loading-box span:not(.loading-img)", videoI18nText.analyzing);
+        setNodeText(".reload-box p", videoI18nText.analysisFailed);
+        setNodeText(".reload-box .reload-btn", videoI18nText.retryNow);
+        setNodeText(".min_map_empty p", videoI18nText.noContent);
+        setInlineText(".full_screen", videoI18nText.fullScreen);
+        setFirstText(".prev_video_right .top_title h5", videoI18nText.segmentSummary);
+        setInlineText(".sum_left-btn .copy-btn", videoI18nText.copy);
+        setInlineText(".sum_left-btn .add-btn.stu-addnote-btn:last", videoI18nText.extractMarkedContent);
+        setNodeText(".sum_pack-btn span", videoI18nText.fold);
+        $(".ltip__content").html(videoI18nText.subtitleFoundPrefix + '<span id="subTitleNum">0</span>' + videoI18nText.subtitleFoundSuffix);
+        setNodeText(".qSubtit_tips", videoI18nText.subtitleTips);
+    }
+
+    $(window).resize(function () {
+        //æ£æµ360å°çªå£æ­æ¾å¨ä½æ è¯
+    	if($("body[idpopup = 'bodyPopupId']").css ("overflow-y")=="hidden"){
+    		//è­¦åç¨æ·
+    		alert(videoI18nText.popupUnsupported);
+    	}
+    });
+    var stopNum = 0;
+    var stopId;
+    function tabIndexAttr() {
+        stopNum ++;
+        if (stopNum > 5 || $(".vjs-progress-holder.vjs-slider.vjs-slider-horizontal").length > 0){
+            clearInterval(stopId);
+            $(".vjs-progress-holder.vjs-slider.vjs-slider-horizontal").attr("tabindex","-1")
+            $("button.vjs-menu-button.vjs-menu-button-popup.vjs-button").attr("tabindex","-1")
+        }
+    }
+    window.onload = function(){
+        stopId = setInterval(tabIndexAttr, 1000);
+        if (getCookie("writenote")) {
+            $(".writeNote_vid_con").hide();
+        }
+        $(".writeNote_vid_blue").on("click", function (){
+            $(".writeNote_vid_con").hide();
+            if (getCookie("writenote") == "yes") {
+                return;
+            }
+            Ext.setCookie("writenote", "yes");
+        })
+    }
+
+    // å®ä¹éå½å½æ°ï¼æ¥åè¦æ¥æ¾å¶ç¶çº§åç´ çåç´ ãè¦æ¥æ¾çç¶çº§åç´ çæ è®°åç§°ä»¥åï¼å¯éï¼æå¤§æ·±åº¦åæ°ï¼é»è®¤ä¸º6ï¼ï¼å¹¶è¿åå·ææå®æ è®°åç§°çç¶çº§åç´ æ nullã
+    function findParent(element, parentTag, maxDepth = 6, currentDepth = 0) {
+        // if("$!{isAccessibleCustomFid}" != "1"){
+        //     return;
+        // }
+        // å¦æå½ååç´ ä¸å­å¨æéå½æ·±åº¦è¾¾å°äºæå¤§å¼ï¼åè¿å nullã
+        if (!element || currentDepth === maxDepth) {
+            return null;
+        }
+
+        // è·åå½ååç´ çç¶çº§åç´ ã
+        var parent = element.parentElement;
+
+        // å¦æç¶çº§åç´ å­å¨ä¸å·ææå®çæ è®°åç§°ï¼åè¿åè¯¥åç´ ã
+        if (parent && parent.tagName.toLowerCase() === parentTag.toLowerCase()) {
+            return parent;
+        }
+
+        // å¦åï¼éå½è°ç¨è¯¥å½æ°ï¼ä¼ å¥ç¶çº§åç´ ä½ä¸ºåæ°ï¼ä»¥æ¥æ¾å·ææå®æ è®°åç§°çç¶çº§åç´ ã
+        return findParent(parent, parentTag, maxDepth, currentDepth + 1);
+    }
+
+    // è·åè¦æ¥æ¾å¶ç¶çº§åç´ çåç´ ã
+    var childIframeElement = window.frameElement;
+
+    if (childIframeElement) {
+        // è°ç¨ findParent å½æ°ä»¥æ¥æ¾å·ææè¿ç p æ è®°åç§°çç¶çº§åç´ ã
+        var parentElement = findParent(childIframeElement, 'p');
+        // æ£æ¥æ¯å¦æ¾å°äºç¶çº§åç´ 
+        if (parentElement) {
+            parentElement.setAttribute("tabindex","-1")
+        }
+    }
+    $(function () {
+        applyVideoI18nText();
+
+        $('.main').on('input', '.sp_video_input', function () {
+            $('.sp_video_input').not(this).val($(this).val());
+        });
+
+        // åæ®µæ»ç»å±å¼æ¶èµ·
+        $('.prev_video_right').on('click','.sum_pack-btn',function () {
+            if($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).find('span').text(videoI18nText.unfold)
+                $(".sum_list_box .sum_item_card .sum_title").css("display", "-webkit-box");
+                $('.prev_video_right').find('.sum_list_box .sum_txt').slideUp(150);
+            } else {
+                $(this).addClass('active');
+                $(this).find('span').text(videoI18nText.fold)
+                $(".sum_list_box .sum_item_card .sum_title").css("display", "none");
+                $('.prev_video_right').find('.sum_list_box .sum_txt').slideDown(150);
+            }
+        })
+    });
+</script>
+</body>
+</html>

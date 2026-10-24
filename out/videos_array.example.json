@@ -1,0 +1,30 @@
+[
+  {
+    "no": 1,
+    "chapter": "示例章名",
+    "chapter_id": "1000000000",
+    "section": "示例小节名",
+    "section_id": "1000000001",
+    "name": "示例视频（教师A）_x264.mp4",
+    "duration": "9:16",
+    "duration_sec": 556,
+    "size_text": "54.15 MB",
+    "size_bytes": 56780390,
+    "objectid": "00000000000000000000000000000001",
+    "jobid": "0000000000000000",
+    "is_passed": false,
+    "mid": "000000000000000000",
+    "player_url": "https://mooc1.chaoxing.com/ananas/modules/video/index.html?objectid=<32位objectid>&jobid=<jobid>",
+    "play_url": "https://<cdn域名>/sd.mp4?at_=<时间戳>&ak_=<签名>&ad_=<签名>",
+    "download_url": "https://<cdn域名>/download/<objectid>?at_=<时间戳>&ak_=<签名>&ad_=<签名>",
+    "mp3_url": "https://<cdn域名>/mp3/",
+    "screenshot_url": "https://<cdn域名>/snapshot.jpg",
+    "report_url": "https://mooc1.chaoxing.com/mooc-ans/multimedia/log/a/<cpi>",
+    "report_interval": 60,
+    "fastforward": true,
+    "switchwindow": true,
+    "doublespeed": false,
+    "transcript_txt": "out/transcripts/01__示例视频.txt",
+    "transcript_srt": "out/transcripts/01__示例视频.srt"
+  }
+]
